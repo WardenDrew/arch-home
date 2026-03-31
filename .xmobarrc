@@ -1,0 +1,55 @@
+Config
+  {
+  overrideRedirect = False,
+  position = Bottom,
+  font = "NotoSansM Nerd Font Mono Bold 12",
+  additionalFonts = [ "NotoSansM Nerd Font Mono Bold 16" ],
+  bgColor = "black",
+  fgColor = "grey",
+  alpha = 200,
+  lowerOnStart = True,
+  allDesktops = True,
+  persistent = True,
+  commands =
+    [
+    Run Cpu [ 
+    "--template", "<fn=1></fn> <total>%", 
+    "--High", "75",
+    "--Low", "50",
+    "--high", "red",
+    "--normal", "darkorange",
+    "--low", "limegreen"
+    ] 50,
+    Run Memory [ 
+    "--template", "<fn=1>󰍛</fn> <usedratio>%",
+    "--High", "75",
+    "--Low", "50",
+    "--high", "red",
+    "--normal", "darkorange",
+    "--low", "limegreen"
+    ] 50,
+    Run BatteryN ["BAT0"] [
+    "--template", "<fn=1></fn> <acstatus>",
+    "--Low", "15",
+    "--High", "50",
+    "--low", "red",
+    "--normal", "darkorange",
+    "--high", "limegreen",
+    "--",
+    "-o", "<left>% (<timeleft>)",
+    "-O", "Charging <left>%",
+    "-i", "Fully Charged"
+    ] 50 "bat0",
+    Run CommandReader "/home/ahaskell/.config/custom/datetime.sh" "datetime",
+    Run CommandReader "/home/ahaskell/.config/custom/wlan.sh" "wlan",
+    Run CommandReader "/home/ahaskell/.config/custom/windows.sh" "windows",
+    Run Alsa "default" "Master" [ 
+    "--template", "<fn=1>󰕾</fn> <fc=deeppink><volume></fc>%",
+    "--",
+    "--alsactl=/usr/bin/alsactl"
+    ]
+    ],
+  sepChar = "%",
+  alignSep = "}{",
+  template = " %datetime% | %wlan% } %windows% { %alsa:default:Master% | %cpu% | %memory% | %bat0% "
+  }

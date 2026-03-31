@@ -1,0 +1,15 @@
+window-decoration = none
+background-opacity = 0.8
+term = xterm-256color
+
+keybind = page_up=scroll_page_lines:-5
+keybind = page_down=scroll_page_lines:5
+copy-on-select = clipboard
+
+font-family = NotoSansM Nerd Font Mono
+
+background = #000000
+foreground = #ff8100
+cursor-color = #00dd00
+selection-background = #00bb00
+selection-foreground = #000000

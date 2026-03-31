@@ -1,0 +1,6 @@
+configuration {
+  modes: [ combi ];
+  combi-modes: [ run, drun, window, ssh ];
+}
+
+@theme "gruvbox-dark"
