@@ -2,36 +2,52 @@
 *
 
 # Git Files
-!.gitignore
-!README.md
+!/.gitignore
+!/README.md
+
+# the /.config directory itself
+!/.config
 
 # Bash
-!.bash_profile
-!.bashrc
-!.profile
-!.config/starship.toml
+!/.bash_profile
+!/.bashrc
+!/.profile
+!/.config/starship.toml
 
 # X11
-!.xinitrc
-!.xmobarrc
-!.Xresources
-!.config/xmonad/xmonad.hs
-!.config/xmobar/**
-!.config/custom/**
-!.config/wallpaper.jpg
+!/.xinitrc
+!/.xmobarrc
+!/.Xresources
+!/.config/xmonad
+!/.config/xmonad/xmonad.hs
+!/.config/xmobar
+!/.config/xmobar/**
+!/.config/custom
+!/.config/custom/**
+!/.config/wallpaper.jpg
 
 # Other Configs
-!.config/ghostty/**
-!.config/ranger/**
-!.config/rofi/**
-!.config/screengrab/**
-!.config/nvim/**
-!.config/htop/**
-!.config/gtk-3.0/**
-!.config/gtk-4.0/**
-!.config/gh/config.yml
-!.fehbg
+!/.config/ghostty
+!/.config/ghostty/**
+!/.config/ranger
+!/.config/ranger/**
+!/.config/rofi
+!/.config/rofi/**
+!/.config/screengrab
+!/.config/screengrab/**
+!/.config/nvim
+!/.config/nvim/**
+!/.config/htop
+!/.config/htop/**
+!/.config/gtk-3.0
+!/.config/gtk-3.0/**
+!/.config/gtk-4.0
+!/.config/gtk-4.0/**
+!/.config/gh
+!/.config/gh/config.yml
+!/.fehbg
 
 # Codex
-!.codex/AGENTS.md
-!.codex/LESSONS.md
+!/.codex
+!/.codex/AGENTS.md
+!/.codex/LESSONS.md
