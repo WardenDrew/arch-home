@@ -34,8 +34,9 @@ myTabConfig = def
 
 myLayout = avoidStruts (
   renamed [Replace "primary"] (spacingWithEdge 4 $ BW.boringWindows $ minimize $ limitWindows 3 $ normal) 
-  ||| renamed [Replace "grid"] (spacingWithEdge 4 $ limitWindows 9 $ Grid) 
-  ||| renamed [Replace "tabbed"] (spacingWithEdge 4 $ tabbedBottom shrinkText myTabConfig)
+  ||| renamed [Replace "grid"] (spacingWithEdge 4 $ BW.boringWindows $ minimize $ limitWindows 9 $ Grid) 
+  ||| renamed [Replace "tabbed"] (spacingWithEdge 4 $ BW.boringWindows $ minimize $ tabbedBottom shrinkText myTabConfig)
+  ||| renamed [Replace "all"] (spacingWithEdge 4 $ Grid)
   ) where
     normal = Tall nmaster delta ratio
     nmaster = 1
@@ -52,11 +53,6 @@ myRemoveKeys =
   "M-k",
   "M-l"
   ]
-
-spawnPreset1 = do
-  spawn "ghostty -e ranger"
-  spawn "ghostty"
-  spawn "firefox"
 
 myStartupHook = do
   spawn "picom"
@@ -76,12 +72,18 @@ myAddKeys =
     layout <- getActiveLayoutDescription
     case layout of
       "primary" -> BW.focusDown
+      "grid" -> BW.focusDown
+      "tabbed" -> BW.focusDown
+      "all" -> windows SS.focusDown
       _ -> windows SS.focusDown
   ),
   ("M-<Left>", do
     layout <- getActiveLayoutDescription
     case layout of
       "primary" -> BW.focusUp
+      "grid" -> BW.focusUp
+      "tabbed" -> BW.focusUp
+      "all" -> windows SS.focusUp
       _ -> windows SS.focusUp
   ),
   ("M-<Up>", do
@@ -89,6 +91,8 @@ myAddKeys =
     case layout of
       "primary" -> rotAllDown
       "grid" -> rotAllDown
+      "tabbed" -> BW.swapUp
+      "all" -> windows SS.swapUp
       _ -> windows SS.swapUp
   ),
   ("M-<Down>", do
@@ -96,6 +100,8 @@ myAddKeys =
     case layout of
       "primary" -> rotAllUp
       "grid" -> rotAllUp
+      "tabbed" -> BW.swapDown
+      "all" -> windows SS.swapDown
       _ -> windows SS.swapDown
   ),
   ("M-<Page_Down>", withFocused minimizeWindow),
@@ -106,8 +112,24 @@ myAddKeys =
   ("M-e", spawn "ghostty -e ranger"),
   ("M-w", spawn "firefox"),
   ("M-c", spawn "code"),
-  ("M-<Tab>", spawn "rofi -show combi"),
-  ("M-1", spawnPreset1)
+  ("M-r", spawn "rofi -show combi"),
+  ("M-1", sendMessage $ JumpToLayout "primary"),
+  ("M-2", sendMessage $ JumpToLayout "grid"),
+  ("M-3", sendMessage $ JumpToLayout "tabbed"),
+  ("M-<Tab>", do
+    layout <- getActiveLayoutDescription
+    case layout of
+      "all" -> sendMessage $ JumpToLayout "primary"
+      _ -> sendMessage $ JumpToLayout "all"
+  ),
+  ("M-<Space>", do
+    layout <- getActiveLayoutDescription
+    case layout of
+      "primary" -> sendMessage $ JumpToLayout "grid"
+      "grid" -> sendMessage $ JumpToLayout "tabbed"
+      "tabbed" -> sendMessage $ JumpToLayout "primary"
+      _ -> sendMessage $ JumpToLayout "primary"
+  )
   ]
 
 
