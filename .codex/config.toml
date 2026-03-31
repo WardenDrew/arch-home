@@ -1,0 +1,4 @@
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+[projects."/home/codejail/cell"]
+trust_level = "trusted"

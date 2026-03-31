@@ -53,5 +53,6 @@
 
 # Codex
 !/.codex/
+!/.codex/config.toml
 !/.codex/AGENTS.md
 !/.codex/LESSONS.md
