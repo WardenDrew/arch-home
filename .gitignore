@@ -26,6 +26,10 @@
 !/.config/custom/**
 !/.config/wallpaper.jpg
 
+# System backup configs
+!/.config/system-bak/
+!/.config/system-bak/**
+
 # Other Configs
 !/.config/ghostty/
 !/.config/ghostty/**
