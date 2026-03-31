@@ -9,29 +9,29 @@
 !.bash_profile
 !.bashrc
 !.profile
-!/.config/starship.toml
+!.config/starship.toml
 
 # X11
 !.xinitrc
 !.xmobarrc
 !.Xresources
-!/.config/xmonad/xmonad.hs
-!/.config/xmobar/**
-!/.config/custom/**
-!/.config/wallpaper.jpg
+!.config/xmonad/xmonad.hs
+!.config/xmobar/**
+!.config/custom/**
+!.config/wallpaper.jpg
 
 # Other Configs
-!/.config/ghostty/**
-!/.config/ranger/**
-!/.config/rofi/**
-!/.config/screengrab/**
-!/.config/nvim/**
-!/.config/htop/**
-!/.config/gtk-3.0/**
-!/.config/gtk-4.0/**
-!/.config/gh/config.yml
-!/.fehbg
+!.config/ghostty/**
+!.config/ranger/**
+!.config/rofi/**
+!.config/screengrab/**
+!.config/nvim/**
+!.config/htop/**
+!.config/gtk-3.0/**
+!.config/gtk-4.0/**
+!.config/gh/config.yml
+!.fehbg
 
 # Codex
-!/.codex/AGENTS.md
-!/.codex/LESSONS.md
+!.codex/AGENTS.md
+!.codex/LESSONS.md
