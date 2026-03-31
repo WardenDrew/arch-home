@@ -6,7 +6,7 @@
 !/README.md
 
 # the /.config directory itself
-!/.config
+!/.config/
 
 # Bash
 !/.bash_profile
@@ -18,36 +18,36 @@
 !/.xinitrc
 !/.xmobarrc
 !/.Xresources
-!/.config/xmonad
+!/.config/xmonad/
 !/.config/xmonad/xmonad.hs
-!/.config/xmobar
+!/.config/xmobar/
 !/.config/xmobar/**
-!/.config/custom
+!/.config/custom/
 !/.config/custom/**
 !/.config/wallpaper.jpg
 
 # Other Configs
-!/.config/ghostty
+!/.config/ghostty/
 !/.config/ghostty/**
-!/.config/ranger
+!/.config/ranger/
 !/.config/ranger/**
-!/.config/rofi
+!/.config/rofi/
 !/.config/rofi/**
-!/.config/screengrab
+!/.config/screengrab/
 !/.config/screengrab/**
-!/.config/nvim
+!/.config/nvim/
 !/.config/nvim/**
-!/.config/htop
+!/.config/htop/
 !/.config/htop/**
-!/.config/gtk-3.0
+!/.config/gtk-3.0/
 !/.config/gtk-3.0/**
-!/.config/gtk-4.0
+!/.config/gtk-4.0/
 !/.config/gtk-4.0/**
-!/.config/gh
+!/.config/gh/
 !/.config/gh/config.yml
 !/.fehbg
 
 # Codex
-!/.codex
+!/.codex/
 !/.codex/AGENTS.md
 !/.codex/LESSONS.md
