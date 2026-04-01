@@ -47,5 +47,13 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
   unset f
 fi
 
+# Disables the "Middle Click" button (2) on the bottom
+# Of the touchpad and maps it left-click (1) instead
+# I kept middle clicking when intending to left click
+# And the upper physical left/middle/right buttons
+# Are still available and on a different xinput device.
+xinput set-button-map 10 1 1 3 4 5 6 7
+# Decreases delay and increase rate for held buttons repeating
 xset r rate 200 25;
+
 exec "$xmonad";
