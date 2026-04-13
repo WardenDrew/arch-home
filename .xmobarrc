@@ -45,13 +45,9 @@ Config
     Run CommandReader "/home/ahaskell/.config/custom/windows.sh" "windows",
     Run CommandReader "/home/ahaskell/.config/custom/brightness.sh" "brightness",
     Run CommandReader "/home/ahaskell/.config/custom/temp.sh" "temp", 
-    Run Alsa "default" "Master" [ 
-    "--template", "<fn=1>󰕾</fn> <fc=deeppink><volume></fc>%",
-    "--",
-    "--alsactl=/usr/bin/alsactl"
-    ]
+    Run CommandReader "/home/ahaskell/.config/custom/sound.sh" "sound"
     ],
   sepChar = "%",
   alignSep = "}{",
-  template = " %datetime% | %wlan% } %windows% { %alsa:default:Master% | %brightness% | %temp% | %cpu% | %memory% | %bat0% "
+  template = " %datetime% | %wlan% } %windows% { %sound% | %brightness% | %temp% | %cpu% | %memory% | %bat0% "
   }

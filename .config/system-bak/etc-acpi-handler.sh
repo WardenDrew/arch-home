@@ -4,6 +4,15 @@
 # Logs all unknown ACPI events to journalctl
 DEBUG_LOG=
 
+# # # # # # # # # # # #
+# # # ALSA SOUND  # # #
+# # # # # # # # # # # #
+
+saveAlsaState() {
+  alsactl store;
+  chmod 644 /var/lib/alsa/asound.state;
+}
+
 # # # # # # # # # # # # # # # #
 # # # BRIGHTNESS CONROL # # # #
 # # # # # # # # # # # # # # # #
@@ -50,26 +59,30 @@ case "$1" in
   button/mute)
     logger "F1_MUTE";
     amixer set Master toggle;
+    saveAlsaState;
     ;;
   button/volumedown)
     logger "F2_VOLUME_DOWN";
     amixer set Master 5%-;
+    saveAlsaState;
     ;;
   button/volumeup)
     logger "F3_VOLUME_UP";
     amixer set Master unmute;
     amixer set Master 5%+;
+    saveAlsaState;
     ;;
   button/micmute)
     logger "F4_MIC_MUTE";
     cap_state=$(amixer get Capture | grep "Front Left: Capture" | awk '{print $7}');
     if [[ "$cap_state" == "[on]" ]]; then
       amixer set Capture nocap;
-      echo "0" > "/sys/class/leds/platform::micmute/brightness";
+      echo "1" > "/sys/class/leds/platform::micmute/brightness";
     else
       amixer set Capture cap;
-      echo "1" > "/sys/class/leds/platform::micmute/brightness";
+      echo "0" > "/sys/class/leds/platform::micmute/brightness";
     fi
+    saveAlsaState;
     ;;
   video/brightnessdown)
     logger "F5_BRIGHTNESS_DOWN";
