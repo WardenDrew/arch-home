@@ -37,8 +37,6 @@
 !/.config/ranger/**
 !/.config/rofi/
 !/.config/rofi/**
-!/.config/screengrab/
-!/.config/screengrab/**
 !/.config/nvim/
 !/.config/nvim/**
 !/.config/htop/

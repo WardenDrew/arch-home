@@ -18,6 +18,6 @@ do
     ipcidr="/${ipcidr}";
   fi
 
-  echo "<fc=green><fn=1>󰖩</fn> ${ssid}</fc> [<fc=cyan>${signal}</fc>%] <fc=orange>${ipaddr}</fc>${ipcidr}";
+  echo "<fc=green><fn=1>󰖩</fn> ${ssid}</fc> [<fc=cyan>${signal}%</fc>] <fc=orange>${ipaddr}</fc>${ipcidr}";
   sleep 5;
 done
