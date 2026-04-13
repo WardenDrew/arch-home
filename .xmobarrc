@@ -28,18 +28,7 @@ Config
     "--normal", "darkorange",
     "--low", "limegreen"
     ] 50,
-    Run BatteryN ["BAT0"] [
-    "--template", "<fn=1></fn> <acstatus>",
-    "--Low", "15",
-    "--High", "50",
-    "--low", "red",
-    "--normal", "darkorange",
-    "--high", "limegreen",
-    "--",
-    "-o", "<left>% (<timeleft>)",
-    "-O", "Charging <left>%",
-    "-i", "Fully Charged"
-    ] 50 "bat0",
+    Run CommandReader "/home/ahaskell/.config/custom/power.sh" "power",
     Run CommandReader "/home/ahaskell/.config/custom/datetime.sh" "datetime",
     Run CommandReader "/home/ahaskell/.config/custom/wlan.sh" "wlan",
     Run CommandReader "/home/ahaskell/.config/custom/windows.sh" "windows",
@@ -49,5 +38,5 @@ Config
     ],
   sepChar = "%",
   alignSep = "}{",
-  template = " %datetime% | %wlan% } %windows% { %sound% | %brightness% | %temp% | %cpu% | %memory% | %bat0% "
+  template = " %datetime% | %wlan% } %windows% | %sound% | %brightness% { %temp% | %cpu% | %memory% | %power% "
   }

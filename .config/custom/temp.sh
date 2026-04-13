@@ -7,7 +7,24 @@ do
     continue;
   fi
 
-  package_temp=$(echo "$sensors" | grep 'Package id 0:' | tr -s ' ' | cut -d' ' -f4 | tr -d '+');
-  echo "<fn=1>󰏈</fn> <fc=red>${package_temp}</fc>";
-  sleep 5;
+  temp=$(echo "$sensors" | grep 'Package id 0:' | tr -s ' ' | cut -d' ' -f4 | cut -d'.' -f1 | tr -d '+');
+  forecolor="red";
+  if (( temp < 40 )); then
+    forecolor="navy";
+  elif (( temp < 45 )); then
+    forecolor="steelblue";
+  elif (( temp < 50 )); then
+    forecolor="turquoise";
+  elif (( temp < 55 )); then
+    forecolor="springgreen";
+  elif (( temp < 60 )); then
+    forecolor="yellow";
+  elif (( temp < 65 )); then
+    forecolor="orange";
+  elif (( temp < 70 )); then
+    forecolor="crimson";
+  fi
+
+  echo "<fc=${forecolor}><fn=1>󰏈</fn> ${temp}󰔄</fc>";
+  sleep 15;
 done
