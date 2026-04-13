@@ -11,7 +11,7 @@ function printBrightness {
 
   percentage=$(( 100 * brightness / max_brightness ));
 
-  echo "<fn=1>󰖙</fn> <fc=slateblue>${percentage}</fc>%";
+  echo "<fc=slateblue><fn=1>󰖙</fn> <fn=1>${percentage}</fn>%</fc>";
 }
 
 printBrightness;

@@ -7,11 +7,17 @@ do
     continue;
   fi
 
-  ssid=$(echo "$wlan" | cut -d: -f2);
+  ssid=$(echo "$wlan" | cut -d: -f2 | cut -c 1-16);
   signal=$(echo "$wlan" | cut -d: -f3);
   ip=$(ip -4 --brief -o addr show wlp0s20f3 | awk '{print $3}');
   ipaddr=$(echo "$ip" | cut -d/ -f1);
   ipcidr=$(echo "$ip" | cut -d/ -f2);
-  echo "<fn=1>󰖩</fn> <fc=green>${ssid}</fc> <fc=orange>${signal}</fc>% <fc=royalblue>${ipaddr}</fc>/<fc=red>${ipcidr}</fc>";
+  if [[ "$ipcidr" != '24' ]]; then
+    ipcidr="<fc=red>/<fn=1>${ipcidr}</fn></fc>";
+  else
+    ipcidr="/${ipcidr}";
+  fi
+
+  echo "<fc=green><fn=1>󰖩</fn> ${ssid}</fc> [<fc=cyan>${signal}</fc>%] <fc=orange>${ipaddr}</fc>${ipcidr}";
   sleep 5;
 done

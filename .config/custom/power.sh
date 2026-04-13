@@ -37,66 +37,43 @@ function printPower {
   done < <(upower -i "$upower_device")
 
   if [[ "$state" == 'discharging' ]]; then
-    direction="<fc=red>-";
-    forecolor="red";
-    icon="󱃍";
-    if (( percentage > 99 )); then
-      forecolor="green";
-      icon="󰁹";
-    elif (( percentage > 90 )); then
-      forecolor="limegreen";
-      icon="󰂂";
-    elif (( percentage > 80 )); then
-      forecolor="limegreen";
-      icon="󰂁";
-    elif (( percentage > 70 )); then
-      forecolor="limegreen";
-      icon="󰂀";
-    elif (( percentage > 60 )); then
-      forecolor="orange";
-      icon="󰁿";
-    elif (( percentage > 50 )); then
-      forecolor="orange";
-      icon="󰁾";
-    elif (( percentage > 40 )); then
-      forecolor="orange";
-      icon="󰁽";
-    elif (( percentage > 30 )); then
-      icon="󰁼";
-    elif (( percentage > 20 )); then
-      icon="󰁻";
-    elif (( percentage > 10 )); then
-      icon="󰁺";
-    fi
+    direction="<fc=orange><fn=1>󱐋</fn> <fn=1>-";
   else
-    direction="<fc=slateblue>+";
-    forecolor="slateblue";
-    icon="󰢟";
-    if (( percentage > 99 )); then
-      forecolor="green";
-      icon="󰂄";
-    elif (( percentage > 90 )); then
-      icon="󰂋";
-    elif (( percentage > 80 )); then
-      icon="󰂊";
-    elif (( percentage > 70 )); then
-      icon="󰢞";
-    elif (( percentage > 60 )); then
-      icon="󰂉";
-    elif (( percentage > 50 )); then
-      icon="󰢝";
-    elif (( percentage > 40 )); then
-      icon="󰂈";
-    elif (( percentage > 30 )); then
-      icon="󰂇";
-    elif (( percentage > 20 )); then
-      icon="󰂆";
-    elif (( percentage > 10 )); then
-      icon="󰢜";
-    fi
+    direction="<fc=slateblue><fn=1>󱐋</fn> <fn=1>+";
   fi
 
-  echo "<fn=1>󱐋${direction}${energy_rate_watts}</fc></fn>W | <fc=${forecolor}>${energy} /${energy_full}Wh <fn=1>${percentage}% ${icon}</fn></fc>";
+  forecolor="red";
+  icon="󱃍";
+  if (( percentage > 99 )); then
+    forecolor="green";
+    icon="󰁹";
+  elif (( percentage > 90 )); then
+    forecolor="limegreen";
+    icon="󰂂";
+  elif (( percentage > 80 )); then
+    forecolor="limegreen";
+    icon="󰂁";
+  elif (( percentage > 70 )); then
+    forecolor="limegreen";
+    icon="󰂀";
+  elif (( percentage > 60 )); then
+    forecolor="orange";
+    icon="󰁿";
+  elif (( percentage > 50 )); then
+    forecolor="orange";
+    icon="󰁾";
+  elif (( percentage > 40 )); then
+    forecolor="orange";
+    icon="󰁽";
+  elif (( percentage > 30 )); then
+    icon="󰁼";
+  elif (( percentage > 20 )); then
+    icon="󰁻";
+  elif (( percentage > 10 )); then
+    icon="󰁺";
+  fi
+
+  echo "${direction}${energy_rate_watts}</fn>w</fc> [<fc=${forecolor}>${energy}/${energy_full}Wh] <fn=1>${percentage}%</fn> <fn=1>${icon}</fn></fc>";
   sleep 15;
 }
 

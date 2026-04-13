@@ -8,18 +8,18 @@ function printSound {
   capture_state=$(echo "$capture_raw" | awk '{print $7}');
 
   if [[ "$capture_state" == "[on]" ]]; then
-    capture_output="<fn=1><fc=green>󰍬</fc></fn>";
+    capture_output="<fc=green>󰍬</fc>";
   else
-    capture_output="<fn=1><fc=red>󰍭</fc></fn>";
+    capture_output="<fc=red>󰍭</fc>";
   fi
 
   if [[ "$master_state" == "[on]" ]]; then
-    mute_output="<fn=1><fc=green>󰕾</fc></fn>";
+    mute_output="<fc=green>󰕾</fc>";
   else
-    mute_output="<fn=1><fc=red>󰖁</fc></fn>";
+    mute_output="<fc=red>󰖁</fc>";
   fi
 
-  echo "${capture_output} ${mute_output} <fc=yellow>${master_volume}</fc>dB";
+  echo "<fn=1>${capture_output}</fn> <fn=1>${mute_output}</fn> <fc=magenta><fn=1>${master_volume}</fn>dB</fc>";
 }
 
 printSound;

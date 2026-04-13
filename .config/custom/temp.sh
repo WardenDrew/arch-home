@@ -25,6 +25,6 @@ do
     forecolor="crimson";
   fi
 
-  echo "<fc=${forecolor}><fn=1>󰏈</fn> ${temp}󰔄</fc>";
+  echo "<fc=${forecolor}><fn=1>󰏈</fn> <fn=1>${temp}</fn>󰔄</fc>";
   sleep 15;
 done
