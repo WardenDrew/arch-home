@@ -5,7 +5,7 @@ exec_prefix="${prefix}"
 xrdb="xrdb"
 xinitdir="/etc/X11/xinit"
 xmodmap="xmodmap"
-xmonad="~/.local/bin/xmonad"
+xmonad="$HOME/.local/bin/xmonad"
 
 userresources="$HOME/.Xresources"
 usermodmap="$HOME/.Xmodmap"
@@ -54,6 +54,9 @@ fi
 # Are still available and on a different xinput device.
 xinput set-button-map 10 1 1 3 4 5 6 7
 # Decreases delay and increase rate for held buttons repeating
-xset r rate 200 25;
+xset r rate 300 25;
+
+# Include profile
+[ -f ~/.profile ] && . ~/.profile
 
 exec "$xmonad";

@@ -114,9 +114,6 @@ myAddKeys =
   ("M-c", spawn "code"),
   ("M-r", spawn "rofi -show combi"),
   ("<Print>", spawn "screengrab"),
-  ("M-1", sendMessage $ JumpToLayout "primary"),
-  ("M-2", sendMessage $ JumpToLayout "grid"),
-  ("M-3", sendMessage $ JumpToLayout "tabbed"),
   ("M-<Tab>", do
     layout <- getActiveLayoutDescription
     case layout of
@@ -132,7 +129,6 @@ myAddKeys =
       _ -> sendMessage $ JumpToLayout "primary"
   )
   ]
-
 
 myConfig = def
   {

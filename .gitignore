@@ -20,8 +20,6 @@
 !/.Xresources
 !/.config/xmonad/
 !/.config/xmonad/xmonad.hs
-!/.config/xmobar/
-!/.config/xmobar/**
 !/.config/custom/
 !/.config/custom/**
 !/.config/wallpaper.jpg
