@@ -36,10 +36,11 @@ function printPower {
     esac
   done < <(upower -i "$upower_device")
 
+  stateColor='slateblue';
+  stateDirection='+';
   if [[ "$state" == 'discharging' ]]; then
-    direction="<fc=orange><fn=1>󱐋</fn> <fn=1>-";
-  else
-    direction="<fc=slateblue><fn=1>󱐋</fn> <fn=1>+";
+    stateColor='orange';
+    stateDirection='-';
   fi
 
   forecolor="red";
@@ -73,7 +74,12 @@ function printPower {
     icon="󰁺";
   fi
 
-  echo "${direction}${energy_rate_watts}</fn>w</fc> [<fc=${forecolor}>${energy}/${energy_full}Wh] <fn=1>${percentage}%</fn> <fn=1>${icon}</fn></fc>";
+  result="<fc=${stateColor}><fn=1>󱐋</fn>\
+ <fn=1>${stateDirection}${energy_rate_watts}</fn>w</fc>\
+ [<fc=${forecolor}>${energy}/${energy_full}Wh</fc>]\
+ <fc=${forecolor}><fn=1>${percentage}%</fn>\
+ <fn=1>${icon}</fn></fc>";
+  echo "$result";
   sleep 15;
 }
 

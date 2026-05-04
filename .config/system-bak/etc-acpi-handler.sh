@@ -4,18 +4,49 @@
 # Logs all unknown ACPI events to journalctl
 DEBUG_LOG=
 
-# # # # # # # # # # # #
-# # # ALSA SOUND  # # #
-# # # # # # # # # # # #
-
-saveAlsaState() {
-  alsactl store;
-  chmod 644 /var/lib/alsa/asound.state;
+# # # # # # # # # # # # # # # # # # # # # #
+# # # XMOBAR RELOAD FOR USER SESSIONS # # #
+# # # # # # # # # # # # # # # # # # # # # #
+xmobarReload() {
+  touch "/run/xmobar-${1}.reload";
+  chmod 644 "/run/xmobar-${1}.reload";
 }
 
-# # # # # # # # # # # # # # # #
-# # # BRIGHTNESS CONROL # # # #
-# # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # #
+# # # RUN AS SEAT0 USER # # #
+# # # # # # # # # # # # # # #
+runAsSeatZero() {
+  # Make sure a command was passed
+  if [[ -z "$@" ]]; then
+    logger "ERROR: No command provided!";
+    return 1;
+  fi
+  
+  # Is seat0 active?
+  seatZeroSession=$(loginctl show-seat seat0 -p ActiveSession | cut -d= -f2);
+  if [[ -z "$seatZeroSession" ]]; then
+    logger "WARN: seat0 has no active session!";
+    return 1;
+  fi
+
+  sessionUserId=$(loginctl show-session -p User "$seatZeroSession" | cut -d= -f2);
+  if [[ -z "$sessionUserId" ]]; then
+    logger "WARN: seat0 active session has no user";
+    return 1;
+  fi
+
+  sessionUserName=$(id -nu "$sessionUserId");
+  if [[ -z "$sessionUserName" ]]; then
+    logger "WARN: could not translate userid to username for seat0";
+    return 1;
+  fi
+
+  runuser -u "$sessionUserName" -- "$@";
+}
+
+# # # # # # # # # # # # # # # # # # # #
+# # # DISPLAY BRIGHTNESS CONROL # # # #
+# # # # # # # # # # # # # # # # # # # #
 
 MAX_BRIGHTNESS_DEV="/sys/class/backlight/intel_backlight/max_brightness";
 CURRENT_BRIGHTNESS_DEV="/sys/class/backlight/intel_backlight/brightness";
@@ -45,7 +76,6 @@ adjustBrightness() {
   else
     echo "$new_brightness" > "$CURRENT_BRIGHTNESS_DEV";
   fi
-
 }
 
 # # # # # # # # # # # # # # # # # #
@@ -58,31 +88,24 @@ adjustBrightness() {
 case "$1" in
   button/mute)
     logger "F1_MUTE";
-    amixer set Master toggle;
-    saveAlsaState;
+    runAsSeatZero wpctl set-mute @DEFAULT_SINK@ toggle;
+    xmobarReload sound;
     ;;
   button/volumedown)
     logger "F2_VOLUME_DOWN";
-    amixer set Master 5%-;
-    saveAlsaState;
+    runAsSeatZero wpctl set-volume @DEFAULT_SINK@ 5%- -l 1.0;
+    xmobarReload sound;
     ;;
   button/volumeup)
     logger "F3_VOLUME_UP";
-    amixer set Master unmute;
-    amixer set Master 5%+;
-    saveAlsaState;
+    runAsSeatZero wpctl set-mute @DEFAULT_SINK@ 0;
+    runAsSeatZero wpctl set-volume @DEFAULT_SINK@ 5%+ -l 1.0;
+    xmobarReload sound;
     ;;
   button/micmute)
     logger "F4_MIC_MUTE";
-    cap_state=$(amixer get Capture | grep "Front Left: Capture" | awk '{print $7}');
-    if [[ "$cap_state" == "[on]" ]]; then
-      amixer set Capture nocap;
-      echo "1" > "/sys/class/leds/platform::micmute/brightness";
-    else
-      amixer set Capture cap;
-      echo "0" > "/sys/class/leds/platform::micmute/brightness";
-    fi
-    saveAlsaState;
+    runAsSeatZero wpctl set-mute @DEFAULT_SOURCE@ toggle;
+    xmobarReload sound;
     ;;
   video/brightnessdown)
     logger "F5_BRIGHTNESS_DOWN";
