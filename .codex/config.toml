@@ -1,4 +1,50 @@
-model = "gpt-5.4"
-model_reasoning_effort = "medium"
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+approvals_reviewer = "auto_review"
+plan_mode_reasoning_effort = "xhigh"
+service_tier = "default"
 [projects."/home/codejail/cell"]
 trust_level = "trusted"
+
+[projects."/home/ahaskell/code/wardendrew/jrythm"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/mwa/mwa-scada"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ranes/thegrid"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/wardendrew/template2026"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ironwatch/m365-tools"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ironwatch/ironsignage"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ironwatch/rauc"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ironwatch/flipoff"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ironwatch/ironwatch-web"]
+trust_level = "trusted"
+
+[projects."/home/ahaskell/code/ironwatch/ironsight"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+
+[notice]
+hide_rate_limit_model_nudge = true
